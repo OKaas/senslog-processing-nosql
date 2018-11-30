@@ -1,0 +1,13 @@
+#security:
+#  ignored: /**
+# =============================================================
+# SPRING
+#
+spring:
+  data:
+    mongodb:
+      database: test
+      uri: mongodb://localhost/test
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true

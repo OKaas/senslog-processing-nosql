@@ -1,0 +1,142 @@
+[
+  {
+    "_class": "cz.senslog.model.db.User",
+    "_id": "5c01372970af0c44dcd75481",
+    "name": "user1",
+    "email": "user1@email.com",
+    "password": "12345"
+  },
+  {
+    "_class": "cz.senslog.model.db.User",
+    "_id": "5c0143bf77121d4a30284a20",
+    "name": "user2",
+    "email": "user2@email.com",
+    "password": "12345"
+  },
+
+
+  {
+    "_class": "cz.senslog.model.db.Phenomenon",
+    "_id": "5c0137b470af0c44dcd75488",
+    "physicalUnit": "kph",
+    "description": "speed"
+  },
+  {
+    "_class": "cz.senslog.model.db.Phenomenon",
+    "_id": "5c01444677121d4a30284a21",
+    "physicalUnit": "gps",
+    "description": "latitude, longitude"
+  },
+
+
+  {
+    "_class": "cz.senslog.model.db.UnitGroup",
+    "_id": "5c013c4570af0c1488b1bbd5",
+    "description": "Farm 1",
+    "units": [
+      {
+        "_id": "5c013c4570af0c1488b1bbd3",
+        "description": "Tractor"
+      },
+      {
+        "_id": "5c013c4570af0c1488b1bbd4",
+        "description": "Static sensor"
+      }
+    ]
+  },
+  {
+    "_class": "cz.senslog.model.db.UnitGroup",
+    "_id": "5c013c3070af0c1488b1bbd2",
+    "description": "Farm 2",
+    "units": [
+      {
+        "_id": "5c013c3070af0c1488b1bbd0",
+        "description": "Chicken 1"
+      },
+      {
+        "_id": "5c013c3070af0c1488b1bbd1",
+        "description": "Chicken 2"
+      }
+    ]
+  },
+
+
+  {
+    "_class": "cz.senslog.model.db.UserGroup",
+    "_id": "5c013dc170af0c1488b1bbdb",
+    "name": "devils",
+    "description": "undeground people",
+    "usersIds": [
+      "5c01372970af0c44dcd75481",
+      "5c0143bf77121d4a30284a20"
+    ],
+    "privileges": [
+      {
+        "unitGroupId": "5c013c3070af0c1488b1bbd2",
+        "privileges": "222"
+      }
+    ]
+  },
+  {
+    "_class": "cz.senslog.model.db.UserGroup",
+    "_id": "5c013df270af0c1488b1bbdc",
+    "name": "gods",
+    "description": "cloud people",
+    "usersIds": [
+      "5c01372970af0c44dcd75481"
+    ],
+    "privileges": [
+      {
+        "unitGroupId": "5c013c4570af0c1488b1bbd5",
+        "privileges": "111"
+      },
+      {
+        "unitGroupId": "5c013c3070af0c1488b1bbd2",
+        "privileges": "012"
+      }
+    ]
+  },
+
+
+  {
+    "_class": "cz.senslog.model.db.Sensor",
+    "_id": "5c013d4670af0c1488b1bbd9",
+    "description": "Speedometer",
+    "phenomenonId": "5c0137b470af0c44dcd75488",
+    "unitGroupId": "5c013c3070af0c1488b1bbd2",
+    "unitId": "5c013c3070af0c1488b1bbd0"
+  },
+  {
+    "_class": "cz.senslog.model.db.Sensor",
+    "_id": "5c013d6070af0c1488b1bbda",
+    "description": "Speedometer",
+    "phenomenonId": "5c0137b470af0c44dcd75488",
+    "unitGroupId": "5c013c3070af0c1488b1bbd2",
+    "unitId": "5c013c3070af0c1488b1bbd1"
+  },
+  {
+    "_class": "cz.senslog.model.db.Sensor",
+    "_id": "5c0146f977121d4a30284a22",
+    "description": "Speedometer",
+    "phenomenonId": "5c0137b470af0c44dcd75488",
+    "unitGroupId": "5c013c4570af0c1488b1bbd5",
+    "unitId": "5c013c4570af0c1488b1bbd3"
+  },
+  {
+    "_class": "cz.senslog.model.db.Sensor",
+    "_id": "5c01472777121d4a30284a23",
+    "description": "Speedometer",
+    "phenomenonId": "5c01444677121d4a30284a21",
+    "unitGroupId": "5c013c4570af0c1488b1bbd5",
+    "unitId": "5c013c4570af0c1488b1bbd4"
+  },
+
+
+  {
+    "_class": "cz.senslog.model.db.Observation",
+    "_id": "5c014f7270af0c135062442d",
+    "timestamp": "2000-10-31T06:30:00.000Z",
+    "value": "12",
+    "sensorId": "5c014a3270af0c112c9fc4c7"
+  }
+]
