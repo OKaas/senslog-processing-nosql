@@ -65,16 +65,10 @@
     "_class": "cz.senslog.model.db.UserGroup",
     "_id": "5c013dc170af0c1488b1bbdb",
     "name": "devils",
-    "description": "undeground people",
+    "description": "underground people",
     "usersIds": [
       "5c01372970af0c44dcd75481",
       "5c0143bf77121d4a30284a20"
-    ],
-    "privileges": [
-      {
-        "unitGroupId": "5c013c3070af0c1488b1bbd2",
-        "privileges": "222"
-      }
     ]
   },
   {
@@ -84,16 +78,6 @@
     "description": "cloud people",
     "usersIds": [
       "5c01372970af0c44dcd75481"
-    ],
-    "privileges": [
-      {
-        "unitGroupId": "5c013c4570af0c1488b1bbd5",
-        "privileges": "111"
-      },
-      {
-        "unitGroupId": "5c013c3070af0c1488b1bbd2",
-        "privileges": "012"
-      }
     ]
   },
 
