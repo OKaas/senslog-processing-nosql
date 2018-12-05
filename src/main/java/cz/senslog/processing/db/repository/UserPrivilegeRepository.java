@@ -12,6 +12,8 @@ public interface UserPrivilegeRepository extends MongoRepository<UserPrivilege, 
 
     List<UserPrivilege> findAllByUserIdInAndUnitGroupId(List<ObjectId> usersIds, ObjectId unitGroupId);
 
+    UserPrivilege findByUnitGroupIdAndUserId(ObjectId unitGroupId, ObjectId userId);
+
     List<UserPrivilege> findAllByPrivilegesIdsContains(ObjectId privilegeId);
 
     /* --- Collaborates --- */

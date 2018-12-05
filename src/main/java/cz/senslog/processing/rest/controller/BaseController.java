@@ -1,26 +1,28 @@
 package cz.senslog.processing.rest.controller;
 
-import cz.senslog.model.db.Privilege;
-import cz.senslog.model.db.UserGroup;
+import cz.senslog.model.db.UserPrivilege;
+import cz.senslog.processing.db.repository.UserPrivilegeRepository;
 import org.bson.types.ObjectId;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
+import java.util.BitSet;
 
 public class BaseController {
 
-    protected boolean isApproved(List<UserGroup> userGroups, ObjectId searchGroupId, String requestPrivilege){
+    @Autowired
+    private UserPrivilegeRepository userPrivilegeRepository;
 
-//        for (UserGroup userGroup : userGroups) {
-//            List<Privilege> privileges = userGroup.getPrivileges();
-//            for (Privilege privilege : privileges) {
-//                if (privilege.getUnitGroupId().equals(searchGroupId)) {
-//                    // TODO check privileges
-//                    return true;
-//                }
-//            }
-//        }
-//        return false;
-        return true;
+    protected boolean isApproved(ObjectId unitGroupId, ObjectId userId, BitSet requestedPrivilege){
+
+
+        UserPrivilege privilege = userPrivilegeRepository.findByUnitGroupIdAndUserId(unitGroupId, userId);
+        if(privilege == null){
+            return false;
+        }
+
+        privilege.getPrivileges().and(requestedPrivilege);
+
+        return privilege.getPrivileges().equals(requestedPrivilege);
     }
 
 }

@@ -2,11 +2,9 @@ package cz.senslog.processing.rest.controller;
 
 import cz.senslog.model.db.Observation;
 import cz.senslog.model.db.Sensor;
-import cz.senslog.model.db.UserGroup;
 import cz.senslog.model.dto.create.ObservationCreate;
 import cz.senslog.processing.db.repository.ObservationRepository;
 import cz.senslog.processing.db.repository.SensorRepository;
-import cz.senslog.processing.db.repository.UserGroupRepository;
 import org.bson.types.ObjectId;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
@@ -19,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.List;
+import java.util.BitSet;
 
 @RepositoryRestController
 public class ObservationController extends BaseController {
@@ -28,10 +26,9 @@ public class ObservationController extends BaseController {
 
 	@Autowired
     private ObservationRepository observationRepository;
+
     @Autowired
     private SensorRepository sensorRepository;
-    @Autowired
-	private UserGroupRepository userGroupRepository;
 
     @Autowired
 	private ModelMapper modelMapper;
@@ -47,11 +44,10 @@ public class ObservationController extends BaseController {
     	}
 
 		ObjectId unitGroupId = sensor.getUnitGroupId();
-		// TODO use logged user
-    	List<UserGroup> userGroups = userGroupRepository.findByUsersIdsContains(new ObjectId("5c01372970af0c44dcd75481"));
 
+		// TODO use logged user
     	// TODO use real privilege
-		if(!isApproved(userGroups, unitGroupId, "TODO")) {
+		if(!isApproved(unitGroupId, new ObjectId("5c01372970af0c44dcd75481"), new BitSet())) {
 			// TODO use logged user id
 			LOGGER.warn("User with id: \'{}\' try to perform not privilege operation!", "5c01372970af0c44dcd75481");
 			return HttpStatus.UNAUTHORIZED;
