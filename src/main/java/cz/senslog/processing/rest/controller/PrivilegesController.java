@@ -98,10 +98,7 @@ public class PrivilegesController extends BaseController {
             return null;
         }
 
-        return modelMapper.map(
-                privilegeRepository.findOne(privilegeDto.getUid()),
-                PrivilegeOut.class
-        );
+        return modelMapper.map(privilege, PrivilegeOut.class);
     }
 
     @ResponseBody
