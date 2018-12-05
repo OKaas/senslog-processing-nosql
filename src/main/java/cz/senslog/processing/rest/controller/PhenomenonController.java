@@ -1,16 +1,9 @@
 package cz.senslog.processing.rest.controller;
 
 import cz.senslog.model.db.Phenomenon;
-import cz.senslog.model.db.Sensor;
-import cz.senslog.model.db.Unit;
-import cz.senslog.model.db.UnitGroup;
 import cz.senslog.model.dto.create.PhenomenonCreate;
-import cz.senslog.model.dto.create.SensorCreate;
 import cz.senslog.model.dto.output.PhenomenonOut;
-import cz.senslog.model.dto.output.SensorOut;
 import cz.senslog.processing.db.repository.PhenomenonRepository;
-import cz.senslog.processing.db.repository.SensorRepository;
-import cz.senslog.processing.db.repository.UnitGroupRepository;
 import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,12 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class PhenomenonController extends BaseController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(PhenomenonController.class);
-
-    @Autowired
-    private UnitGroupRepository unitGroupRepository;
-
-    @Autowired
-    private SensorRepository sensorRepository;
 
     @Autowired
     private PhenomenonRepository phenomenonRepository;
