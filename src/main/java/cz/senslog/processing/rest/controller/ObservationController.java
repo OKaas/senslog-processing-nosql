@@ -3,6 +3,7 @@ package cz.senslog.processing.rest.controller;
 import cz.senslog.model.db.Observation;
 import cz.senslog.model.db.Sensor;
 import cz.senslog.model.dto.create.ObservationCreate;
+import cz.senslog.model.dto.output.ObservationOut;
 import cz.senslog.processing.db.repository.ObservationRepository;
 import cz.senslog.processing.db.repository.SensorRepository;
 import org.bson.types.ObjectId;
@@ -35,7 +36,7 @@ public class ObservationController extends BaseController {
 
     @ResponseBody
     @RequestMapping(value = "/observation", method = RequestMethod.POST)
-    public HttpStatus insertObservation(@RequestBody ObservationCreate observationCreate) {
+    public HttpStatus create(@RequestBody ObservationCreate observationCreate) {
     	Sensor sensor = sensorRepository.findOne(observationCreate.getSensorId());
 
     	if (sensor == null) {
@@ -59,4 +60,23 @@ public class ObservationController extends BaseController {
         return HttpStatus.CREATED;
     }
 
+	@ResponseBody
+	@RequestMapping(value = "/observation", method = RequestMethod.GET)
+	public ObservationOut read(@RequestBody cz.senslog.model.dto.Observation observationDto) {
+
+		// TODO check if user have privileges for this operation
+
+		if (observationDto.getUid() == null){
+			LOGGER.warn("Observation id can not be null!");
+			return null;
+		}
+
+    	Observation observation = observationRepository.findOne(observationDto.getUid());
+		if(observation == null){
+			LOGGER.warn("Observation with id \'{}\' does not exists", observationDto.getUid());
+			return null;
+		}
+
+		return modelMapper.map(observation,ObservationOut.class);
+	}
 }
