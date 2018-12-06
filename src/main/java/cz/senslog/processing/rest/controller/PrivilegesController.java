@@ -77,7 +77,7 @@ public class PrivilegesController extends BaseController {
 
         createMissingPrivileges(userPrivileges, userGroup.getUsersIds(), unitGroup.getUid());
 
-        addUserPrivilege(userPrivileges, privilege);
+        addUserPrivilege(userPrivileges, privilege.getUid());
         updateUserPrivileges(userPrivileges);
         return HttpStatus.CREATED;
     }
@@ -161,7 +161,7 @@ public class PrivilegesController extends BaseController {
             createMissingPrivileges(newUserPrivileges, newUserGroup.getUsersIds(), newPrivilege.getUnitGroupId());
 
             // add new privilege to UserPrivileges
-            addUserPrivilege(newUserPrivileges, newPrivilege);
+            addUserPrivilege(newUserPrivileges, newPrivilege.getUid());
 
             // update UsersPrivileges
             userPrivilegesToUpdate.addAll(newUserPrivileges);
@@ -230,11 +230,11 @@ public class PrivilegesController extends BaseController {
      * !! NOT UPDATE DATABASE
      *
      * @param userPrivileges
-     * @param createdPrivilege
+     * @param createdPrivilegeId
      */
-    private void addUserPrivilege(List<UserPrivilege> userPrivileges, cz.senslog.model.db.Privilege createdPrivilege) {
+    private void addUserPrivilege(List<UserPrivilege> userPrivileges, ObjectId createdPrivilegeId) {
         for (UserPrivilege userPrivilege : userPrivileges) {
-            userPrivilege.getPrivilegesIds().add(createdPrivilege.getUid()); // TODO is createdPrivilege.uid set ?
+            userPrivilege.getPrivilegesIds().add(createdPrivilegeId);
         }
     }
 
